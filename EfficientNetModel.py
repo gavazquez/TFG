@@ -45,8 +45,8 @@ class EfficientNetModel:
                 loss.backward()
                 optimizer.step()
                 running_loss += loss.item()
-                if batch % batchSize == 0:
-                    print(f'{epoch + 1}, {batch + 1}, {running_loss / batchSize}')
+                #if batch % batchSize == 0:
+                    #print(f'{epoch + 1}, {batch + 1}, {running_loss / batchSize}')
                 self.losses.append(running_loss)
                 del running_loss
 

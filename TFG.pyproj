@@ -23,7 +23,6 @@
   <ItemGroup>
     <Compile Include="EfficientNetModel.py" />
     <Compile Include="Main.py" />
-    <Compile Include="Original.bak" />
     <Compile Include="EfficientEnsemble.py" />
     <Compile Include="ISICDataset.py" />
   </ItemGroup>

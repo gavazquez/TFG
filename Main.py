@@ -8,6 +8,7 @@ from torchvision import transforms
 import EfficientNetModel
 import ISICDataset
 import os
+import gc
 
 torch.manual_seed(0)
 
@@ -54,12 +55,20 @@ def DivideData():
     train_set.to_csv('csvfiles\\train.csv', index=False)
 
 if __name__ == "__main__":
-    DivideData()
+    DivideData()    
+    torch.cuda.empty_cache()
+    gc.collect()
+
+    torch.cuda.empty_cache()
+    gc.collect()
     ef = EfficientNetModel.EfficientNetModel(classes, df_class, data_set_val, data_set_train)
-    #ef.Train(16, 0.01, 1, 0, 0, '3')    
-    #modelFileName = ef.saveModel()
-    #print (f'Model file {modelFileName}')
-    ef.loadFromFile("efficientnet\efficientnet3_lr_0.01_bs_16_ep_1_pretr_True_erase.mdl")    
+    ef.Train(8, 0.01, 10, 0, 0, '3')
     accuracy = ef.validate()
     print (f'Got an accuracy of {accuracy}')
-    ef.test(data_set_test, images)
+    del ef
+
+    #modelFileName = ef.saveModel()
+    #print (f'Model file {modelFileName}')
+    #ef.loadFromFile("efficientnet\efficientnet3_lr_0.01_bs_16_ep_1_pretr_True_erase.mdl")    
+
+    #ef.test(data_set_test, images)
