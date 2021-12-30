@@ -3,8 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-*.bak
-csvfiles/
 efficientnet/
 results/
 test2019/
